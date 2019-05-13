@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:text="Inserire dati paziente"/>
+
+    <TextView
+        android:id="@+id/label_eta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Età:" />
+
+    <EditText
+        android:id="@+id/insert_eta"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/label_sesso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Sesso:" />
+
+    <EditText
+        android:id="@+id/insert_sesso"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/label_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Peso:" />
+
+    <EditText
+        android:id="@+id/insert_peso"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" />
+    <TextView
+        android:id="@+id/label_altezza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Altezza:" />
+
+    <EditText
+        android:id="@+id/insert_altezza"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnnext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prosegui"
+        android:layout_marginTop="12dp"
+        android:onClick="next"
+        />
+
+
+</LinearLayout>
