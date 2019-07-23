@@ -18,36 +18,37 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/black" />
+        android:background="@color/colorPrimaryDark" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
 
         <TextView
             android:id="@+id/answer1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:background="@color/colorBackground"
+            android:background="@drawable/tv_border"
             android:gravity="center"
             android:onClick="selectedOption"
             android:text="SI"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/answer2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:background="@color/colorBackground"
+            android:background="@drawable/tv_border"
             android:gravity="center"
             android:onClick="selectedOption"
             android:text="NO"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -56,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginTop="-8dp"
         android:fontFamily="sans-serif"
         android:gravity="fill_horizontal"
         android:justificationMode="inter_word"

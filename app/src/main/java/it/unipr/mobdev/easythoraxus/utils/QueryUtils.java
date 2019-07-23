@@ -121,20 +121,6 @@ public final class QueryUtils {
         //ArrayList<String> info = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonFile);
-            /*String question = jsonObject.optString("domanda");
-            //info.add(domanda);
-
-            JSONArray jsonArray = new JSONArray(jsonObject.optString("risposte"));
-            ArrayList<String> answers = new ArrayList<>();
-            for (int i = 0; i < jsonArray.length(); i++) {
-                answers.add(jsonArray.getString(i));
-                //info.add(answer);
-            }
-            String description = jsonObject.optString("descrizione");
-            //info.add(descrizione);
-            String finale = jsonObject.optString("finale");
-            //info.add(finale);
-            step = new StepDescriptor(question, answers, description, finale);*/
             step.setQuestion(jsonObject.optString("domanda"));
             JSONArray jsonArray = new JSONArray(jsonObject.optString("risposte"));
             ArrayList<String> answers = new ArrayList<>();
@@ -153,22 +139,21 @@ public final class QueryUtils {
 
     public static DiagnosisDescriptor parserDiagnosis(String jsonFile) {
         //ArrayList<String> diagnosi = new ArrayList<>();
-        DiagnosisDescriptor diagnosisDescriptor = new DiagnosisDescriptor();
+        DiagnosisDescriptor diagnosis = new DiagnosisDescriptor();
         try {
             JSONArray jsonArray = new JSONArray(jsonFile);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String id = jsonObject.optString("id");
                 if (id.equals("1")) {
-
-                    diagnosisDescriptor.setName(jsonObject.optString("nome"));
-                    diagnosisDescriptor.setDescription(jsonObject.optString("descrizione"));
+                    diagnosis.setName(jsonObject.optString("nome"));
+                    diagnosis.setDescription(jsonObject.optString("descrizione"));
                 }
             }
         } catch (JSONException e) {
             Log.e(TAG, "Problem parsing the procedure JSON results", e);
         }
-        return diagnosisDescriptor;
+        return diagnosis;
     }
 }
 

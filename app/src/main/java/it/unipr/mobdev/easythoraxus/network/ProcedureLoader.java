@@ -9,17 +9,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import it.unipr.mobdev.easythoraxus.models.ProcedureDescriptor;
+import it.unipr.mobdev.easythoraxus.utils.Global;
 import it.unipr.mobdev.easythoraxus.utils.QueryUtils;
 
 public class ProcedureLoader extends AsyncTaskLoader<ArrayList<ProcedureDescriptor>> {
 
     private static final String TAG = ProcedureLoader.class.getName();
 
-    private String mUrl;
+    private String mUrl = Global.PROCEDURE_URL;
 
-    public ProcedureLoader(Context context, String url) {
+    public ProcedureLoader(Context context) {
         super(context);
-        mUrl = url;
+        //mUrl = url;
     }
 
     @Override

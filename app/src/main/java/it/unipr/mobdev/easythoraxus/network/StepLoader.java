@@ -7,17 +7,17 @@ import android.util.Log;
 import java.io.IOException;
 
 import it.unipr.mobdev.easythoraxus.models.StepDescriptor;
+import it.unipr.mobdev.easythoraxus.utils.Global;
 import it.unipr.mobdev.easythoraxus.utils.QueryUtils;
 
 public class StepLoader extends AsyncTaskLoader<StepDescriptor> {
 
     private static final String TAG = StepLoader.class.getName();
 
-    private String mUrl;
+    private String mUrl = Global.STEP_URL + Global.n_step;
 
-    public StepLoader(Context context, String url) {
+    public StepLoader(Context context) {
         super(context);
-        mUrl = url;
     }
 
     @Override
@@ -36,15 +36,12 @@ public class StepLoader extends AsyncTaskLoader<StepDescriptor> {
 
         try {
             jsonResponse = QueryUtils.makeHttpRequest(mUrl);
-            Log.e(TAG, "Connessione stabilita");
+            Log.e(TAG, "Connessione stabilita" + mUrl);
         } catch (IOException e) {
             Log.e(TAG, "Problem making the HTTP request.", e);
         }
-        // info è un array, in ogni posizione c'è un'informazione: 0: domanda, 1: risp1,
-        // 2: risp2, 3: descr, 4: finale (bool)
-        //Log.i(TAG, jsonResponse);
+
         StepDescriptor step = QueryUtils.parserStep(jsonResponse);
-        //Log.i(TAG, info.toString());
         return step;
 
     }

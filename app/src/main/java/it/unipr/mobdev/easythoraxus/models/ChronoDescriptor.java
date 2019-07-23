@@ -56,10 +56,6 @@ public class ChronoDescriptor {
         this.time_per_step = time_per_step;
     }
 
-    public void addTime_per_step(String tps){
-        this.time_per_step.add(tps);
-    }
-
     public String getDuration() {
         this.duration = "";
         Long interval_ms = this.ts_end - this.ts_start;

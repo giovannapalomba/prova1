@@ -34,27 +34,27 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
     private TextView description;
     private int fine_domande = 0;
 
-    private static final int LOADER_ID = 1;
+    //private static final int LOADER_ID = 1;
     private static final String TAG = StepActivity.class.getSimpleName();
-    private String REQUEST_URL = "http://10.0.2.2:3000/step/" + (Global.n_step + 1);
+    //private String REQUEST_URL = "http://10.0.2.2:3000/step/" + (Global.n_step + 1);
 
     //private String REQUEST_URL = "http://192.168.137.1:3000/step/" + Global.n_step;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.step);
+        setContentView(R.layout.step_activity);
 
         Global.n_step += 1;
         setTitle();
-        Log.e(TAG, REQUEST_URL);
+        //Log.e(TAG, REQUEST_URL);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get a reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(LOADER_ID, null, this);
+        loaderManager.initLoader(Global.LOADER_ID, null, this);
 
-        //Global.selected_option = null; //azzero l'opzione scelta
+        Global.selected_option = null; //azzero l'opzione scelta
 
         answer1 = (TextView) findViewById(R.id.answer1);
         answer2 = (TextView) findViewById(R.id.answer2);
@@ -64,8 +64,10 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
         answer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answer1.setBackgroundColor(Color.parseColor("#aeaeae"));
-                answer2.setBackgroundColor(Color.parseColor("#e0e0e0"));
+                answer1.setBackgroundResource(R.color.colorSelected);
+                answer1.setTextColor(Color.WHITE);
+                answer2.setBackgroundResource(R.drawable.tv_border);
+                answer2.setTextColor(Color.DKGRAY);
                 selectedOption(answer1.getText().toString());
             }
         });
@@ -73,8 +75,10 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
         answer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answer1.setBackgroundColor(Color.parseColor("#e0e0e0"));
-                answer2.setBackgroundColor(Color.parseColor("#aeaeae"));
+                answer1.setBackgroundResource(R.drawable.tv_border);
+                answer1.setTextColor(Color.DKGRAY);
+                answer2.setBackgroundResource(R.color.colorSelected);
+                answer2.setTextColor(Color.WHITE);
                 selectedOption(answer2.getText().toString());
             }
         });
@@ -83,10 +87,11 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onRestart() {
         super.onRestart();
-        //l'activity riparte quando chiudo quella successiva, dunque torno indietro di uno step
+        //l'activity riparte quando chiudo quella successiva, dunque torno indietro di uno step_activity
         Global.n_step -= 1;
         setTitle();
-        // se torno indietro devo ricalcolare l'intervallo dello step
+        Global.selected_option = null; //azzero l'opzione scelta
+        //se torno indietro devo ricalcolare l'intervallo dello step_activity
         Long tsLong = System.currentTimeMillis();
         Global.time_start = tsLong;
         Global.step_time.remove(Global.step_time.size() - 1); //elimino l'ultimo aggiunto
@@ -94,7 +99,7 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<StepDescriptor> onCreateLoader(int i, Bundle bundle) {
-        return new StepLoader(this, REQUEST_URL);
+        return new StepLoader(this);
     }
 
     @Override
@@ -102,7 +107,7 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
         View loadingIndicator = findViewById(R.id.loading_indicator2);
         loadingIndicator.setVisibility(View.GONE);
 
-        if (step != null /*&& !step.isEmpty()*/) {
+        if (step != null /*&& !step_activity.isEmpty()*/) {
             update(step);
         }
     }
@@ -155,8 +160,6 @@ public class StepActivity extends AppCompatActivity implements LoaderManager.Loa
             Global.time_start = tsLong; //parte da 0 per il nuovo intervallo
 
             if (fine_domande == 1) {
-                /*Global.to_save.add(tsLong.toString());
-                Global.to_save.add(Integer.toString(Global.n_step));*/
                 Global.current_time_log.setTime_per_step(Global.step_time);
                 Global.current_time_log.setTs_end(tsLong);
                 //Log.i(TAG, tsLong.toString());

@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import android.app.LoaderManager;
@@ -24,15 +26,8 @@ import it.unipr.mobdev.easythoraxus.R;
 
 public class MainListActivity extends AppCompatActivity implements MyListAdapter.ItemClickListener, LoaderManager.LoaderCallbacks<ArrayList<ProcedureDescriptor>> {
 
-    private static final int LOADER_ID = 1;
-
     MyListAdapter adapter;
     public static final String TAG = MainListActivity.class.getSimpleName();
-    private static final String REQUEST_URL = "http://10.0.2.2:3000/procedure";
-
-    //localhost è 10.0.2.2 da emulatore
-    //192.168.137.1 da device usb?
-    //private static final String REQUEST_URL = "http://192.168.137.1:3000/procedure";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +38,7 @@ public class MainListActivity extends AppCompatActivity implements MyListAdapter
 
         //inizializzo loader
         LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(LOADER_ID, null, this);
+        loaderManager.initLoader(Global.LOADER_ID, null, this);
     }
 
     @Override
@@ -71,7 +66,7 @@ public class MainListActivity extends AppCompatActivity implements MyListAdapter
 
     @Override
     public Loader<ArrayList<ProcedureDescriptor>> onCreateLoader(int i, Bundle bundle) {
-        return new ProcedureLoader(this, REQUEST_URL);
+        return new ProcedureLoader(this);
     }
 
     @Override
@@ -110,7 +105,7 @@ public class MainListActivity extends AppCompatActivity implements MyListAdapter
 
 
         Global.chosen_procedure = adapter.getItem(position);
-        Global.to_save.add(Global.chosen_procedure.getName());
+        //Global.to_save.add(Global.chosen_procedure.getName());
 
         Long tsLong = System.currentTimeMillis();
         //devo salvarlo perchè mi serve alla fine per trovare tempo totale della procedura

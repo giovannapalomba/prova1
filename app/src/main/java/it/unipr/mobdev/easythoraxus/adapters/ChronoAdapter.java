@@ -10,14 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import it.unipr.mobdev.easythoraxus.R;
+import it.unipr.mobdev.easythoraxus.models.ChronoDescriptor;
 
 public class ChronoAdapter extends RecyclerView.Adapter<ChronoAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<ChronoDescriptor> mData;
     private LayoutInflater mInflater;
     private ChronoAdapter.ItemClickListener mClickListener;
 
-    public ChronoAdapter(Context context, List<String> data) {
+    public ChronoAdapter(Context context, List<ChronoDescriptor> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -31,8 +32,8 @@ public class ChronoAdapter extends RecyclerView.Adapter<ChronoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String interval = mData.get(position);
-        holder.myTextView.setText(interval);
+        ChronoDescriptor chrono = mData.get(position);
+        holder.myTextView.setText(chrono.getName()+" - "+chrono.getDuration());
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ChronoAdapter extends RecyclerView.Adapter<ChronoAdapter.ViewHolder
         }
     }
 
-    public String getItem(int id) {
+    public ChronoDescriptor getItem(int id) {
         return mData.get(id);
     }
 

@@ -20,6 +20,8 @@ import java.util.Collections;
 import java.util.Date;
 
 import it.unipr.mobdev.easythoraxus.adapters.ChronoAdapter;
+import it.unipr.mobdev.easythoraxus.models.ChronoDescriptor;
+import it.unipr.mobdev.easythoraxus.utils.ChronoManager;
 import it.unipr.mobdev.easythoraxus.utils.Global;
 import it.unipr.mobdev.easythoraxus.R;
 
@@ -37,7 +39,7 @@ public class HistoryActivity extends AppCompatActivity implements ChronoAdapter.
         setContentView(R.layout.history_activity);
         getSupportActionBar().setTitle("Cronologia");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        File file = new File("/data/data/it.unipr.mobdev.prova/files", filename);
+        /*File file = new File("/data/data/it.unipr.mobdev.prova/files", filename);
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -60,14 +62,16 @@ public class HistoryActivity extends AppCompatActivity implements ChronoAdapter.
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        Collections.reverse(to_show); //li inverto così sono in ordine dal più recente al meno recente
-        Collections.reverse(lines);//coerenza!
+        //Collections.reverse(to_show); //li inverto così sono in ordine dal più recente al meno recente
+        //Collections.reverse(lines);//coerenza!
         //al posto di adapter ci va la lista di procedure - tempo tot
+        ArrayList<ChronoDescriptor> chronoList = ChronoManager.getInstance(this).getLogList();
+        Log.e(TAG, chronoList.toString());
         RecyclerView recyclerView = findViewById(R.id.chrono);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ChronoAdapter(this, to_show);
+        adapter = new ChronoAdapter(this, chronoList);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
@@ -79,9 +83,9 @@ public class HistoryActivity extends AppCompatActivity implements ChronoAdapter.
 
     @Override
     public void onItemClick(View view, int position) {
-        Global.selected_line = lines.get(position);
-        Log.e(TAG, Global.selected_line);
-        Global.selected_line_title = adapter.getItem(position);
+       /* Global.selected_line = lines.get(position);
+        Log.e(TAG, Global.selected_line);*/
+        Global.selected_chrono = adapter.getItem(position);
         Intent intentNext = new Intent(HistoryActivity.this, ChronoDetailsActivity.class);
         startActivity(intentNext);
     }

@@ -7,24 +7,23 @@ import android.util.Log;
 import java.io.IOException;
 
 import it.unipr.mobdev.easythoraxus.models.DiagnosisDescriptor;
+import it.unipr.mobdev.easythoraxus.utils.Global;
 import it.unipr.mobdev.easythoraxus.utils.QueryUtils;
 
 public class DiagnosisLoader extends AsyncTaskLoader<DiagnosisDescriptor> {
 
     private static final String TAG = DiagnosisLoader.class.getName();
 
-    private String mUrl;
+    private String mUrl = Global.DIAGNOSIS_URL;
 
-    public DiagnosisLoader(Context context, String url) {
+    public DiagnosisLoader(Context context) {
         super(context);
-        mUrl = url;
     }
 
     @Override
     protected void onStartLoading() {
         forceLoad();
     }
-
 
     @Override
     public DiagnosisDescriptor loadInBackground() {

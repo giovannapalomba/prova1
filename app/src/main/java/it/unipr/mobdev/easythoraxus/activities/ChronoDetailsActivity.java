@@ -17,27 +17,26 @@ public class ChronoDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chrono_details_activity);
-        getSupportActionBar().setTitle(Global.selected_line_title);
+        getSupportActionBar().setTitle(Global.selected_chrono.getName()+" - "+Global.selected_chrono.getDuration());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ts_inizio = (TextView) findViewById(R.id.tsinizio);
         ts_fine = (TextView) findViewById(R.id.tsfine);
         tps = (TextView) findViewById(R.id.tps);
-        String[] tokens = Global.selected_line.split(",");
-        ts_inizio.setText(tokens[1]);
-        ts_fine.setText(tokens[2]);
 
+        ts_inizio.setText(Global.selected_chrono.getTs_start().toString());
+        ts_fine.setText(Global.selected_chrono.getTs_end().toString());
         StringBuilder show_tps = new StringBuilder();
-        int tot_step = Integer.parseInt(tokens[3]);
-        for (int i = 1; i <= tot_step; i++){
-            show_tps.append("StepActivity ");
-            show_tps.append(i);
+        for (int i = 0; i < Global.selected_chrono.getTime_per_step().size(); i++){
+            show_tps.append("Step ");
+            show_tps.append(i+1);
             show_tps.append(": ");
-            show_tps.append(tokens[3+i]);
+            show_tps.append(Global.selected_chrono.getTime_per_step().get(i));
             show_tps.append('s');
             show_tps.append('\n');
         }
         tps.setText(show_tps.toString());
+
     }
 
     public boolean onSupportNavigateUp() {

@@ -6,6 +6,6 @@
     <color name="colorPrimary">#004b79</color>
     <color name="colorPrimaryDark">#00244d</color>
     <color name="colorAccent">#E53935</color>
-    <color name="colorBackground">#e0e0e0</color>
-    <color name="colorSelected">#aeaeae</color>
+    <color name="colorBackground">@android:color/transparent</color>
+    <color name="colorSelected">@color/colorPrimary</color>
 </resources>
