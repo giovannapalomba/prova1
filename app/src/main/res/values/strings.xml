@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">prova</string>
+    <string name="app_name">EasyThoraxUS</string>
     <string name="button_less">-</string>
     <string name="button_more">+</string>
     <string name="quantity">0</string>
+    <string-array name="genders">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
 </resources>

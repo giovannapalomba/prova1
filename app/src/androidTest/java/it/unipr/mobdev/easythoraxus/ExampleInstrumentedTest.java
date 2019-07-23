@@ -1,4 +1,4 @@
-package it.unipr.mobdev.prova;
+package it.unipr.mobdev.easythoraxus;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

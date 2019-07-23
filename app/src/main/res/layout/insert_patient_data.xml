@@ -4,84 +4,124 @@
     android:layout_height="match_parent"
     android:layout_margin="12dp"
     android:baselineAligned="false"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:text="Inserire dati paziente"/>
-
-    <TextView
-        android:id="@+id/label_eta"
+        android:id="@+id/label_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Età:" />
+        android:text="Età:"
+        android:textSize="16sp" />
+
 
     <EditText
-        android:id="@+id/insert_eta"
-        android:layout_width="200dp"
+        android:id="@+id/insert_age"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine" />
+        android:inputType="number" />
+
 
     <TextView
-        android:id="@+id/label_sesso"
+        android:id="@+id/label_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Sesso:" />
+        android:text="Sesso:"
+        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/insert_sesso"
-        android:layout_width="200dp"
+    <!--<EditText
+        android:id="@+id/insert_gender"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:ems="8"
-        android:inputType="textPassword" />
+        android:inputType="textCapCharacters" />-->
+
+    <Spinner
+        android:id="@+id/insert_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
     <TextView
-        android:id="@+id/label_peso"
+        android:id="@+id/label_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Peso:" />
+        android:text="Peso:"
+        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/insert_peso"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/insert_weight"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="kg"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/label_altezza"
+        android:id="@+id/label_height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Altezza:" />
+        android:text="Altezza:"
+        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/insert_altezza"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/insert_height"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="cm"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnnext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prosegui"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:onClick="next"
-        />
+        android:text="Prosegui" />
 
 
 </LinearLayout>
